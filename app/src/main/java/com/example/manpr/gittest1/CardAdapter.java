@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * Created by Best Buy on 07-07-2017.
  */
 //*********User-defined Adapter which extends RecyclerView.Adapter**********
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.DataObjectHolder> {
+public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHolder> {
     ArrayList<DataProvider> DataSet;
     private static MyClickListener myClickListener; //MyClickListener is an interface defined internally later
 
@@ -66,7 +66,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.DataObjectHolder> 
 
 
     //**********The Constructor for this class which is receiving data from the Main2Activity*********
-    public MyAdapter(ArrayList<DataProvider> newDataSet, Context con){
+    public CardAdapter(ArrayList<DataProvider> newDataSet, Context con){
         this.con=con;
         DataSet=newDataSet;
         for(int i=0;i<DataSet.size();i++){

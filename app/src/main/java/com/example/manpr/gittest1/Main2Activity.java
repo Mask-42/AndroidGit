@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
 
-    ArrayList<DataProvider> results;  //This is the Data which is being sent to the MyAdapter Class
+    ArrayList<DataProvider> results;  //This is the Data which is being sent to the CardAdapter Class
     RecyclerView rv1;  //This is the instantiation of RecyclerView
     //**The REYCLERVIEW needs two things,   Adapter and  LayoutManager
 
@@ -62,7 +62,7 @@ public class Main2Activity extends AppCompatActivity {
         my_LM = new LinearLayoutManager(this);  //The Linear Layout Manager is added to the Recycler View
         rv1.setLayoutManager(my_LM);
 
-        my_adapter = new MyAdapter(getDataSet(),Main2Activity.this);  //MyAdapter is user-defined Adapter class a.k.a CustomAdapter
+        my_adapter = new CardAdapter(getDataSet(),Main2Activity.this);  //CardAdapter is user-defined Adapter class a.k.a CustomAdapter
         //getDataSet is a method defined below which returns an ArrayList of Objects of the DataProvider Class
         rv1.setAdapter(my_adapter);
 
@@ -146,7 +146,7 @@ public class Main2Activity extends AppCompatActivity {
     }
 
 
-    //*********This is the getDataSet method used in the MyAdapter constructor***********
+    //*********This is the getDataSet method used in the CardAdapter constructor***********
     private ArrayList<DataProvider> getDataSet(){
         results= new ArrayList<DataProvider>();
         for(int i=0;i<6;i++){
