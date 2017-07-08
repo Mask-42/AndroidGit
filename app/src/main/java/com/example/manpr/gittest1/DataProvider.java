@@ -5,7 +5,7 @@ package com.example.manpr.gittest1;
 public class DataProvider {
 
     private String text1,text2,text3,text4;
-    private int id=R.drawable.logo;
+    private int id=R.drawable.call;
 
     public int getId() {
         return id;

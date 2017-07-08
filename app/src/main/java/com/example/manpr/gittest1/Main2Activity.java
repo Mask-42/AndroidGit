@@ -150,7 +150,7 @@ public class Main2Activity extends AppCompatActivity {
     private ArrayList<DataProvider> getDataSet(){
         results= new ArrayList<DataProvider>();
         for(int i=0;i<6;i++){
-            DataProvider obj=new DataProvider("The Main Text "+(i+1),"The Comment Text "+(i+1),"Hidden "+(i+1),"Second Hidden"+(i+1));
+            DataProvider obj=new DataProvider("Name of visitor "+(i+1),"Time "+(i+1),"Purpose: "+(i+1),"Purpose of the meeting "+(i+1));
             results.add(i,obj);
         }
         return results;  //This returns the ArrayList of the objects of DataProvider Class*********
