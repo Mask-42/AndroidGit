@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bgcard">
 <!-- The SwipeRefreshLayout can only have one child so to have the Button and the Recycler List i had to put in another layout -->
     <android.support.constraint.ConstraintLayout
 
@@ -26,6 +27,7 @@
             android:background="#13eaa2"
             android:text="Add Cards"
             android:textColor="#fff"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
