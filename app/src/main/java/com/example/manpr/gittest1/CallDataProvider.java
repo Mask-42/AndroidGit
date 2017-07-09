@@ -2,6 +2,7 @@ package com.example.manpr.gittest1;
 
 import android.database.Cursor;
 import android.provider.CallLog;
+import android.util.Log;
 
 import java.util.Date;
 
@@ -23,6 +24,7 @@ public class CallDataProvider {
 
          callDate = managedCursor.getString(date);
          callDayTime = new Date(Long.valueOf(callDate));
+        Log.e("Debug", "getCallLog: Working",null );
 
     }
 
