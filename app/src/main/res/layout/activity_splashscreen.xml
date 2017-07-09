@@ -3,7 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/bg"
-
     android:layout_gravity="center"
     android:id="@+id/lin_lay"
 
@@ -13,8 +12,8 @@
         android:id="@+id/splash"
         android:layout_width="400px"
         android:layout_height="320px"
-        android:layout_marginLeft="340px"
-        android:layout_marginTop="250px"
-        android:background="@drawable/diam_icon" />
+       android:layout_gravity="center_horizontal"
+        android:layout_marginTop="385px"
+        android:background="@drawable/logo" />
 
 </LinearLayout>
