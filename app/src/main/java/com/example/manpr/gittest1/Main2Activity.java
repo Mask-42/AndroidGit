@@ -87,7 +87,7 @@ tb=(Toolbar)findViewById(R.id.toolbar);
                 return;
             }
 
-            Cursor managedCursor = managedQuery(CallLog.Calls.CONTENT_URI, null, null, null,null);
+            Cursor managedCursor = managedQuery(CallLog.Calls.CONTENT_URI, null, null, null,CallLog.Calls.DATE+" DESC");
             if(managedCursor.getCount()==0){
                 Toast.makeText(this, "No Logs", Toast.LENGTH_SHORT).show();
                 return;

@@ -106,7 +106,7 @@ public class AddAppointmentActivity extends AppCompatActivity implements View.On
     public void onClick(View view) {
 
         switch (view.getId()){
-            case R.id.PasswordChange:
+            case R.id.Submit1:
 
                 String[] perms = new String[]{Manifest.permission.SEND_SMS};
                 ActivityCompat.requestPermissions(this, perms, 30);
