@@ -26,7 +26,7 @@
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/PasswordChange"
+        app:layout_constraintBottom_toTopOf="@+id/Submit1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -74,7 +74,7 @@
         app:layout_constraintVertical_bias="0.685" />
 
     <Button
-        android:id="@+id/PasswordChange"
+        android:id="@+id/Submit1"
         android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
