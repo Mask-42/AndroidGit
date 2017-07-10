@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.provider.ContactsContract;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -50,7 +49,7 @@ public class AddAppointmentActivity extends AppCompatActivity implements View.On
         time=(EditText)findViewById(R.id.Time);
         date=(EditText)findViewById(R.id.Date);
         phone_no=(TextView)findViewById(R.id.PhoneText);
-        submit=(Button)findViewById(R.id.Submit1);
+        submit=(Button)findViewById(R.id.PasswordChange);
         con=(ConstraintLayout)findViewById(R.id.Constraint1);
         con.requestFocus();
 
@@ -107,7 +106,7 @@ public class AddAppointmentActivity extends AppCompatActivity implements View.On
     public void onClick(View view) {
 
         switch (view.getId()){
-            case R.id.Submit1:
+            case R.id.PasswordChange:
 
                 String[] perms = new String[]{Manifest.permission.SEND_SMS};
                 ActivityCompat.requestPermissions(this, perms, 30);
