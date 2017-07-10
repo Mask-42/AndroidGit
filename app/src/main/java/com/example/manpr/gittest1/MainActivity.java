@@ -19,6 +19,8 @@ EditText et1,et2;
         et1=(EditText)findViewById(R.id.User);
         et2=(EditText)findViewById(R.id.Pass);
         log=(Button)findViewById(R.id.Login);
+        Typeface tf=Typeface.createFromAsset(getAssets(),"font/os.ttf");
+        log.setTypeface(tf);
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

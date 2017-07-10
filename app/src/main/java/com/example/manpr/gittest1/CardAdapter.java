@@ -23,7 +23,6 @@ import java.util.LinkedList;
 //*********User-defined Adapter which extends RecyclerView.Adapter**********
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHolder> {
     LinkedList<DataProvider> DataSet;
-    private static MyClickListener myClickListener; //MyClickListener is an interface defined internally later
 
     private int lastPos=-1; //This is the last position of the item...helpful in animation
     Context con;
@@ -34,7 +33,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHold
 
     //************DataObjectHolder is needed to hold all the data received by this class in the form of DataSet********
     //In this we give Id and all to the widgets used inside the Card View i.e. activity_main2
-    public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class DataObjectHolder extends RecyclerView.ViewHolder  {
 
         TextView t1,t2,t3,t4;   //The number of TextViews have increased since Last Commit
 
@@ -54,13 +53,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHold
             upper=(LinearLayout)itemView.findViewById(R.id.Upper);
             expandable=(LinearLayout)itemView.findViewById(R.id.expandableLayout);
 
-            itemView.setOnClickListener(this);//This will be used on user clicks on the CardView
-        }
-
-        @Override
-        public void onClick(View view) {
-         //It is incomplete as if now...that is why app will crash when you click on any on e of the Cards
-            myClickListener.onItemClick(getAdapterPosition(),view);
         }
     }
 
@@ -74,14 +66,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHold
             expandState.append(i,false);   //Here the expandState of all the Cards is initially set to false
         }
     }
-
-    //I don't know what this one does right no...will try to figure out soon plus right now it is not used anywhere
-    public void setItemOnClickListener(MyClickListener myClickListener){
-        this.myClickListener=myClickListener;
-    }
-
-
-
     //onCreateViewHolder is a method in which we inflate our activity_main2 layout in other words the CardViews
     @Override
     public DataObjectHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -204,10 +188,5 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHold
     @Override
     public int getItemCount() {
         return DataSet.size();
-    }
-
-    //***********This is the MyClickListener interface used above *****************
-    public interface MyClickListener{
-        public void onItemClick(int position, View v);
     }
 }

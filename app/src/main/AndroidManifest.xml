@@ -31,13 +31,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Main2Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddAppointmentActivity" />
-        <activity android:name=".NavigationDemo"
+        <activity
+            android:name=".NavigationDemo"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">>
-
+            android:theme="@style/AppTheme.NoActionBar">
+            >
         </activity>
+        <activity android:name=".SettingsPrefScr" />
+        <activity android:name=".ChangePassword" />
+        <activity android:name=".HelpActivity"></activity>
     </application>
 
 </manifest>

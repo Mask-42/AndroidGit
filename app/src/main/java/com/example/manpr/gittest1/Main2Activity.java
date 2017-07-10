@@ -132,17 +132,16 @@ tb=(Toolbar)findViewById(R.id.toolbar);
         int id = item.getItemId();
 
         if (id == R.id.Home) {
-            Intent in=new Intent(Main2Activity.this,NavigationDemo.class);
-            startActivity(in);
+            finish();
+
         } else if (id == R.id.CallLogs) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.Meetings) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.Settings) {
+            Intent in2=new Intent(Main2Activity.this,SettingsPrefScr.class);
+            startActivity(in2);
+        } else if (id == R.id.Logout) {
 
         }
 

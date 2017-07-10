@@ -113,13 +113,12 @@ public class NavigationDemo extends AppCompatActivity
             Intent in1=new Intent(NavigationDemo.this,Main2Activity.class);
             in1.putExtra("From","Call Log");
             startActivity(in1);
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.Meetings) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.Settings) {
+            Intent in2=new Intent(NavigationDemo.this,SettingsPrefScr.class);
+            startActivity(in2);
+        } else if (id == R.id.Logout) {
 
         }
 
