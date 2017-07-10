@@ -10,6 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.provider.ContactsContract;
 import android.support.constraint.ConstraintLayout;
@@ -95,9 +96,11 @@ public class AddAppointmentActivity extends AppCompatActivity implements View.On
                     status="Airplane Mode On";
                     break;
             }
-            Toast t=Toast.makeText(context, status, Toast.LENGTH_SHORT);
-            t.getView().setBackgroundColor(error? Color.RED: Color.GREEN);
-            t.show();
+            Toast toast=Toast.makeText(context, status, Toast.LENGTH_SHORT);
+           toast.getView().setBackgroundTintList(ColorStateList.valueOf(error? Color.RED:Color.parseColor("#17996e")));
+            TextView text=(TextView) toast.getView().findViewById(android.R.id.message);
+            text.setTextColor(Color.WHITE);
+            toast.show();
         }
     };
     @Override
