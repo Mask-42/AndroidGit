@@ -43,7 +43,8 @@
         </activity>
         <activity android:name=".SettingsPrefScr" />
         <activity android:name=".ChangePassword" />
-        <activity android:name=".HelpActivity"></activity>
+        <activity android:name=".HelpActivity"
+            ></activity>
     </application>
 
 </manifest>
