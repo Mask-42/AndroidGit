@@ -5,13 +5,13 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#13eaa2</item>
         <item name="colorPrimaryDark">#17996e</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">#17996e</item>
     </style>
     <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#13eaa2</item>
         <item name="colorPrimaryDark">#17996e</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">#17996e</item>
     </style>
 
 </resources>
