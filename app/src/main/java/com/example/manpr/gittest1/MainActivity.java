@@ -22,7 +22,7 @@ EditText et1,et2;
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in=new Intent(MainActivity.this,Main2Activity.class);
+                Intent in=new Intent(MainActivity.this,NavigationDemo.class);
                 startActivity(in);
             }
         });

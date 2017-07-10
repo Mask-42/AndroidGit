@@ -15,13 +15,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by Best Buy on 07-07-2017.
  */
 //*********User-defined Adapter which extends RecyclerView.Adapter**********
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHolder> {
-    ArrayList<DataProvider> DataSet;
+    LinkedList<DataProvider> DataSet;
     private static MyClickListener myClickListener; //MyClickListener is an interface defined internally later
 
     private int lastPos=-1; //This is the last position of the item...helpful in animation
@@ -66,7 +67,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHold
 
 
     //**********The Constructor for this class which is receiving data from the Main2Activity*********
-    public CardAdapter(ArrayList<DataProvider> newDataSet, Context con){
+    public CardAdapter(LinkedList<DataProvider> newDataSet, Context con){
         this.con=con;
         DataSet=newDataSet;
         for(int i=0;i<DataSet.size();i++){
