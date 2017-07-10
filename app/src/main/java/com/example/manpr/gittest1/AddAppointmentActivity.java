@@ -49,7 +49,7 @@ public class AddAppointmentActivity extends AppCompatActivity implements View.On
         time=(EditText)findViewById(R.id.Time);
         date=(EditText)findViewById(R.id.Date);
         phone_no=(TextView)findViewById(R.id.PhoneText);
-        submit=(Button)findViewById(R.id.PasswordChange);
+        submit=(Button)findViewById(R.id.Submit1);
         con=(ConstraintLayout)findViewById(R.id.Constraint1);
         con.requestFocus();
 
