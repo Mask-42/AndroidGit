@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "856844766175",
+    "firebase_url": "https://meet-secure.firebaseio.com",
+    "project_id": "meet-secure",
+    "storage_bucket": "meet-secure.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856844766175:android:bfdcbccf8370c70e",
+        "android_client_info": {
+          "package_name": "com.example.manpr.gittest1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856844766175-5bqfmgbku7kpu0mprqo77kf2rqgr71qu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.manpr.gittest1",
+            "certificate_hash": "2bc252bdfcd211c6cab15a0f634cc61b5262fbe2"
+          }
+        },
+        {
+          "client_id": "856844766175-d6rt3969c6sg67oofcaod1qbk1b28cri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcWZ9zi9f0VTpLp7a4q9yIlowSgS4dT9g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856844766175-d6rt3969c6sg67oofcaod1qbk1b28cri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
