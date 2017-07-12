@@ -20,11 +20,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class NavigationDemo extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    LinkedList results;  //This is the Data which is being sent to the CardAdapter Class
     RecyclerView rv1;  //This is the instantiation of RecyclerView
     //**The REYCLERVIEW needs two things,   Adapter and  LayoutManager
 
@@ -35,7 +43,7 @@ public class NavigationDemo extends AppCompatActivity
     SwipeRefreshLayout srl;
     private Session session;
     private TextView navUser;
-
+    LinkedList<HashMap<String, String>> arrLinkedList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,19 +79,47 @@ public class NavigationDemo extends AppCompatActivity
             setTitle("Confirmed Appointments");
             refresh();
             slide_drag();
-            my_adapter = new CardAdapter(getDataSet(), NavigationDemo.this);  //CardAdapter is user-defined Adapter class a.k.a CustomAdapter
-            //getDataSet is a method defined below which returns an LinkedList of Objects of the DataProvider Class
-            rv1.setAdapter(my_adapter);
-        b1=(Button)findViewById(R.id.button);
-        b1.setOnClickListener(new View.OnClickListener() {
+        FirebaseDatabase fbDb = FirebaseDatabase.getInstance();
+        DatabaseReference RootRef = fbDb.getReference();
+        DatabaseReference PendRef = RootRef.child("ConfirmedAppointments");
+
+        Query query = PendRef.orderByChild("ManagerName").equalTo(session.getUser());
+
+
+        arrLinkedList = new LinkedList<HashMap<String, String>>();
+        query.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onClick(View view) {
-                DataProvider temp= new DataProvider("Newly Added Main "+(j+1),"Newly Added Comment "+(j+1),"Hidden "+(j+1),"Second Hidden"+(j+1));
-                j++;
-                addItem(temp); //This is a method defined below
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                final HashMap<String, String> hashMap = new HashMap<String, String>();
+                for (DataSnapshot ds1 : dataSnapshot.getChildren()) {
+                    if (ds1.getKey().equals("Name") || ds1.getKey().equals("Date") || ds1.getKey().equals("Time")||ds1.getKey().equals("Purpose")) {
+                        hashMap.put(ds1.getKey(), (String) ds1.getValue());
+                    }
+                }
+                arrLinkedList.addFirst(hashMap);
+                rv1.setAdapter(new CardAdapter(arrLinkedList, NavigationDemo.this));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
-
     }
 
     @Override
@@ -132,7 +168,6 @@ public class NavigationDemo extends AppCompatActivity
             Intent in2=new Intent(NavigationDemo.this,SettingsPrefScr.class);
             startActivity(in2);
         } else if (id == R.id.Logout) {
-
             logout();
         }
 
@@ -154,10 +189,11 @@ public class NavigationDemo extends AppCompatActivity
                     @Override
                     public void run() {
                         srl.setRefreshing(false);  //No Further Refreshing allowed meaning you can not Refresh it while it is Refreshing
-                        for(int k=0;k<3;k++)
-                            b1.performClick();  //Just for Checking the Working I called the Button click which was adding an item in the View
+                        Intent in=new Intent(NavigationDemo.this,NavigationDemo.class);
+                        finish();
+                        startActivity(in);
                     }
-                },3000); //This is the time for which the Refresh will take place (in millis)
+                },2000); //This is the time for which the Refresh will take place (in millis)
             }
         });
 
@@ -188,7 +224,6 @@ public class NavigationDemo extends AppCompatActivity
                     //*********The onSwiped method tells what to do when an Item is swiped **********
                     @Override
                     public void onSwiped(final RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                        deleteItem(viewHolder.getAdapterPosition()); //Defined Later
                     }
 
                     //********This is a method used to disable swipe refresh layout when we are dragging an item down*******
@@ -214,38 +249,13 @@ public class NavigationDemo extends AppCompatActivity
                 };
         return simpleItemTouchCallback;
     }
-
-
-    //********The addItem method used by the Button**********
-    public void addItem(DataProvider dataObj){
-        results.addFirst(dataObj);
-        //We added an Object of the DataProvider Class to the results LinkedList
-        my_adapter.notifyItemInserted(results.indexOf(dataObj)); //This is used for notification purpose i.e. tells the adapter that gesture has taken place
-    }
-    //************The deleteItem used in onSwiped method of ItemTouchHelper********
-    public void deleteItem(int index){
-        results.remove(index);
-        my_adapter.notifyItemRemoved(index);
-    }
-
     //************To Move the item in the result from one index to another used in onMove method of ItemTouchHelper*******
     private void moveItem(int oldPos, int newPos) {
 
-        DataProvider item=(DataProvider)results.get(oldPos);
-        results.remove(oldPos);
-        results.add(newPos, item);
+        HashMap<String,String> item=arrLinkedList.get(oldPos);
+        arrLinkedList.remove(oldPos);
+        arrLinkedList.add(newPos, item);
         my_adapter.notifyItemMoved(oldPos, newPos);
-    }
-
-
-    //*********This is the getDataSet method used in the CardAdapter constructor***********
-    private LinkedList<DataProvider> getDataSet(){
-        results= new LinkedList<DataProvider>();
-        for(int i=0;i<6;i++){
-            DataProvider obj=new DataProvider("The Main Text "+(i+1),"The Comment Text "+(i+1),"Hidden "+(i+1),"Second Hidden"+(i+1));
-            results.add(i,obj);
-        }
-        return results;  //This returns the LinkedList of the objects of DataProvider Class*********
     }
 
     private void logout(){

@@ -30,7 +30,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     compile 'com.bignerdranch.android:expandablerecyclerview:3.0.0-RC1'
     compile 'com.android.support:design:26.+'
-    testCompile 'junit:junit:4.12'
     compile 'com.google.firebase:firebase-database:11.0.2'
+    testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

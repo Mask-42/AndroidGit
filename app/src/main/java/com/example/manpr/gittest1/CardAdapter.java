@@ -3,6 +3,7 @@ package com.example.manpr.gittest1;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -10,11 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -22,7 +25,7 @@ import java.util.LinkedList;
  */
 //*********User-defined Adapter which extends RecyclerView.Adapter**********
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHolder> {
-    LinkedList<DataProvider> DataSet;
+    LinkedList<HashMap<String,String>> DataSet;
 
     private int lastPos=-1; //This is the last position of the item...helpful in animation
     Context con;
@@ -35,10 +38,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHold
     //In this we give Id and all to the widgets used inside the Card View i.e. activity_main2
     public static class DataObjectHolder extends RecyclerView.ViewHolder  {
 
-        TextView t1,t2,t3,t4;   //The number of TextViews have increased since Last Commit
+        TextView t1,t2,t3;   //The number of TextViews have increased since Last Commit
 
         ImageView im1;
-
+        ImageButton imgNext;
         LinearLayout upper,expandable;  //These are the two linear layouts which are placed in the Card
 
 
@@ -49,7 +52,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHold
             t2=(TextView)itemView.findViewById(R.id.txt2);
             im1=(ImageView)itemView.findViewById(R.id.img1);
             t3=(TextView)itemView.findViewById(R.id.txt3);
-            t4=(TextView)itemView.findViewById(R.id.txt4);
+            imgNext=(ImageButton)itemView.findViewById(R.id.NextButton);
             upper=(LinearLayout)itemView.findViewById(R.id.Upper);
             expandable=(LinearLayout)itemView.findViewById(R.id.expandableLayout);
 
@@ -59,7 +62,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHold
 
 
     //**********The Constructor for this class which is receiving data from the Main2Activity*********
-    public CardAdapter(LinkedList<DataProvider> newDataSet, Context con){
+    public CardAdapter(LinkedList<HashMap<String, String>> newDataSet, Context con){
         this.con=con;
         DataSet=newDataSet;
         for(int i=0;i<DataSet.size();i++){
@@ -81,11 +84,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHold
     public void onBindViewHolder(final DataObjectHolder holder, final int position) {
         holder.setIsRecyclable(false);
 
-        holder.t1.setText(DataSet.get(position).getText1());
-        holder.t2.setText(DataSet.get(position).getText2());
-        holder.im1.setImageResource(DataSet.get(position).getId());
-        holder.t3.setText(DataSet.get(position).getText3());   //The Data for the new TextViews is being set
-        holder.t4.setText(DataSet.get(position).getText4());
+        holder.t1.setText("Meeting with : "+DataSet.get(position).get("Name"));
+        holder.t2.setText("On "+DataSet.get(position).get("Date")+" At "+DataSet.get(position).get("Time"));
+        holder.im1.setImageResource(R.drawable.call);
+        holder.t3.setText("Purpose of the Meeting: "+DataSet.get(position).get("Purpose"));   //The Data for the new TextViews is being set
 
         setAnimation(holder.itemView,position); //The Animation is set to the item here
 
@@ -98,6 +100,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.DataObjectHold
             @Override
             public void onClick(final View v) {
                 onClickButton(holder.expandable, holder.upper,  position); //OnClickButton method is called here
+            }
+        });
+
+        holder.imgNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+Intent in = new Intent(con,MeetingStarted.class);
+                con.startActivity(in);
             }
         });
     }

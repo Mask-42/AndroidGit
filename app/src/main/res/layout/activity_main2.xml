@@ -101,25 +101,30 @@ tools:context="com.example.manpr.gittest1.Main2Activity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txt3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:layout_marginTop="10dp"
                     android:paddingLeft="20dp"
+                    android:textColor="#000"
                     android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/txt4"
-                    android:paddingLeft="20dp"
-                    android:textColor="#000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
 
 
             </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/NextButton"
+                android:layout_width="52dp"
+                android:layout_height="55dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                card_view:srcCompat="@drawable/check_list" />
 
         </LinearLayout>
     </LinearLayout>
