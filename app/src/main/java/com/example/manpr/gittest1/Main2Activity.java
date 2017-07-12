@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.LinkedList;
@@ -41,18 +42,22 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     Button b1;
     int j = 6;
     SwipeRefreshLayout srl;
-
+    private Session session;
+    private TextView navUser;
     @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigationdemo);   //recycler_layout is my Main Layout
-
+        session=new Session(this);
+        if(!session.loggedIn()){
+            logout();
+        }
         rv1 = (RecyclerView) findViewById(R.id.my_recycler);
 
         rv1.setHasFixedSize(true);
-tb=(Toolbar)findViewById(R.id.toolbar);
+        tb=(Toolbar)findViewById(R.id.toolbar);
         my_LM = new LinearLayoutManager(this);  //The Linear Layout Manager is added to the Recycler View
         rv1.setLayoutManager(my_LM);
         Bundle b=getIntent().getExtras();
@@ -66,6 +71,9 @@ tb=(Toolbar)findViewById(R.id.toolbar);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        navUser=(TextView)headerView.findViewById(R.id.Nav_User);
+        navUser.setText(session.getUser());
 
         switch (from){
 
@@ -142,11 +150,17 @@ tb=(Toolbar)findViewById(R.id.toolbar);
             Intent in2=new Intent(Main2Activity.this,SettingsPrefScr.class);
             startActivity(in2);
         } else if (id == R.id.Logout) {
-
+            logout();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void logout(){
+        session.setLoggedIn(false);
+        finish();
+        startActivity(new Intent(Main2Activity.this,MainActivity.class));
     }
 }

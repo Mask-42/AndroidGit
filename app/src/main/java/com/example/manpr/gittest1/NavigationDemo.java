@@ -18,6 +18,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.LinkedList;
 
@@ -32,12 +33,18 @@ public class NavigationDemo extends AppCompatActivity
     Button b1;
     int j = 6;
     SwipeRefreshLayout srl;
+    private Session session;
+    private TextView navUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigationdemo);
 
+        session=new Session(this);
+        if(!session.loggedIn()){
+            logout();
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -49,6 +56,9 @@ public class NavigationDemo extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        navUser=(TextView)headerView.findViewById(R.id.Nav_User);
+        navUser.setText(session.getUser());
 
         //*****************************OURS*****************//
         rv1 = (RecyclerView) findViewById(R.id.my_recycler);
@@ -73,6 +83,7 @@ public class NavigationDemo extends AppCompatActivity
                 addItem(temp); //This is a method defined below
             }
         });
+
     }
 
     @Override
@@ -120,6 +131,7 @@ public class NavigationDemo extends AppCompatActivity
             startActivity(in2);
         } else if (id == R.id.Logout) {
 
+            logout();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -234,4 +246,9 @@ public class NavigationDemo extends AppCompatActivity
         return results;  //This returns the LinkedList of the objects of DataProvider Class*********
     }
 
+    private void logout(){
+        session.setLoggedIn(false);
+        finish();
+        startActivity(new Intent(NavigationDemo.this,MainActivity.class));
+    }
 }

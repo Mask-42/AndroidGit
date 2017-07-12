@@ -25,12 +25,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-EditText et1,et2;
-    Button log;
-    FirebaseDatabase fbDb=FirebaseDatabase.getInstance();
-    DatabaseReference rootRef,UsersRef;
-    String UserName=null;
-    String Password=null;
+
+
+    private EditText et1,et2;
+    private Button log;
+    private FirebaseDatabase fbDb=FirebaseDatabase.getInstance();
+    private DatabaseReference rootRef,UsersRef;
+    private String UserName=null;
+    private String Password=null;
+    private Session session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,11 @@ EditText et1,et2;
         log.setTypeface(tf);
         et1=(EditText)findViewById(R.id.User);
         et2=(EditText)findViewById(R.id.Pass);
+        session=new Session(this);
+        if(session.loggedIn()){
+            startActivity(new Intent(MainActivity.this,NavigationDemo.class));
+            finish();
+        }
 
         log.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +76,11 @@ ValueEventListener MyListener= new ValueEventListener() {
             }
         }
         if (Pass.equals(Password)&&Role.equals("Manager")){
+            session.setLoggedIn(true);
+            session.setUser(UserName);
             Intent in=new Intent(MainActivity.this,NavigationDemo.class);
-            in.putExtra("User",UserName);
             startActivity(in);
+            finish();
         }
         else {
            Toast toast= Toast.makeText(MainActivity.this, "Wrong Username or Password", Toast.LENGTH_SHORT);
