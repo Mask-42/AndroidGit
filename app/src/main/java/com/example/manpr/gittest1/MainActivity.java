@@ -65,10 +65,13 @@ ValueEventListener MyListener= new ValueEventListener() {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
 
-        String Pass=null,Role=null;
+        String Pass=null,Role=null,Use=null;
         for(DataSnapshot ds1: dataSnapshot.getChildren()) {
             for (DataSnapshot ds : ds1.getChildren()) {
-                if (ds.getKey().equals("Password")) {
+                if(ds.getKey().equals("Name")){
+                    Use=(String)ds.getValue();
+                }
+               else if (ds.getKey().equals("Password")) {
                     Pass = (String) ds.getValue();
                 } else if (ds.getKey().equals("Role")) {
                     Role = (String) ds.getValue();
@@ -77,7 +80,7 @@ ValueEventListener MyListener= new ValueEventListener() {
         }
         if (Pass.equals(Password)&&Role.equals("Manager")){
             session.setLoggedIn(true);
-            session.setUser(UserName);
+            session.setUser(Use);
             Intent in=new Intent(MainActivity.this,NavigationDemo.class);
             startActivity(in);
             finish();

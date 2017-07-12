@@ -68,7 +68,7 @@ public class NavigationDemo extends AppCompatActivity
         my_LM = new LinearLayoutManager(this);  //The Linear Layout Manager is added to the Recycler View
         rv1.setLayoutManager(my_LM);
 
-            setTitle("Recent Appointments");
+            setTitle("Confirmed Appointments");
             refresh();
             slide_drag();
             my_adapter = new CardAdapter(getDataSet(), NavigationDemo.this);  //CardAdapter is user-defined Adapter class a.k.a CustomAdapter
@@ -125,7 +125,9 @@ public class NavigationDemo extends AppCompatActivity
             in1.putExtra("From","Call Log");
             startActivity(in1);
         } else if (id == R.id.Meetings) {
-
+            Intent in1=new Intent(NavigationDemo.this,Main2Activity.class);
+            in1.putExtra("From","Meetings");
+            startActivity(in1);
         } else if (id == R.id.Settings) {
             Intent in2=new Intent(NavigationDemo.this,SettingsPrefScr.class);
             startActivity(in2);
