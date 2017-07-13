@@ -38,7 +38,7 @@ public class PendMeetAdapter extends RecyclerView.Adapter<PendMeetAdapter.ViewHo
         holder.V_Contact.setText(contact);
         holder.DateOfApp.setText(date);
         holder.TimeofApp.setText(time);
-        if(!holder.V_name.equals("-")){
+        if(arr.get(position).get("Name")!=null){
             holder.V_name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

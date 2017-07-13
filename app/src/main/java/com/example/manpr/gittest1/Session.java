@@ -29,6 +29,13 @@ public class Session {
     public String getUser(){
         return prefs.getString("User",null);
     }
+    public void setTime(String Time){
+        editor.putString("MyTime",Time);
+        editor.commit();
+    }
+    public String getTime(){
+        return prefs.getString("MyTime","");
+    }
 
     public boolean loggedIn(){
         return prefs.getBoolean("LoggedIn",false);

@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -92,7 +93,7 @@ public class NavigationDemo extends AppCompatActivity
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 final HashMap<String, String> hashMap = new HashMap<String, String>();
                 for (DataSnapshot ds1 : dataSnapshot.getChildren()) {
-                    if (ds1.getKey().equals("Name") || ds1.getKey().equals("Date") || ds1.getKey().equals("Time")||ds1.getKey().equals("Purpose")) {
+                    if (ds1.getKey().equals("Name") || ds1.getKey().equals("Date") || ds1.getKey().equals("Time")||ds1.getKey().equals("Purpose")||ds1.getKey().equals("Contact")) {
                         hashMap.put(ds1.getKey(), (String) ds1.getValue());
                     }
                 }
