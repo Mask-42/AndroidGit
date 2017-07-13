@@ -198,6 +198,8 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         int id = item.getItemId();
 
         if (id == R.id.Home) {
+            Intent in=new Intent(Main2Activity.this,NavigationDemo.class);
+            startActivity(in);
             finish();
         } else if (id == R.id.CallLogs) {
             Intent in1 = new Intent(Main2Activity.this, Main2Activity.class);

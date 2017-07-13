@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -57,7 +58,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                  UserName=et1.getText().toString();
                  Password=et2.getText().toString();
-             UsersRef.orderByChild("Username").equalTo(UserName).addListenerForSingleValueEvent(MyListener);
+                if(!(TextUtils.isEmpty(UserName)&&TextUtils.isEmpty(Password))) {
+                    UsersRef.orderByChild("Username").equalTo(UserName).addListenerForSingleValueEvent(MyListener);
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Enter Both Username and Password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

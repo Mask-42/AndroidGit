@@ -78,11 +78,11 @@ public class MeetingStarted extends AppCompatActivity implements View.OnClickLis
 
                 final DatabaseReference[] fromPath = new DatabaseReference[1];
                 final DatabaseReference toPath;
-                conRef = rootRef.child("ConfirmedAppointments");
+                conRef = rootRef.child("ConfirmAppointments");
                 toPath = rootRef.child("Log/");
                 final String[] key = new String[1];
                 Query query = conRef.orderByChild("ManagerName_Date_Time").equalTo(session.getUser() + "_" + Mdate2 + "_" + Mtime2);
-                query.addValueEventListener(new ValueEventListener() {
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -109,14 +109,13 @@ public class MeetingStarted extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         final DatabaseReference[] fromPath1 = new DatabaseReference[1];
-                        conRef = rootRef.child("ConfirmedAppointments");
+                        conRef = rootRef.child("ConfirmAppointments");
                         toPath1 = rootRef.child("Log");
                         final String[] key1 = new String[1];
                         Query query1 = conRef.orderByChild("ManagerName_Date_Time").equalTo(session.getUser() + "_" + Mdate2 + "_" + Mtime2);
-                        query1.addValueEventListener(new ValueEventListener() {
+                        query1.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-
                                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                     key1[0] = ds.getKey().toString();
                                 }
@@ -151,24 +150,27 @@ public class MeetingStarted extends AppCompatActivity implements View.OnClickLis
         fromPath.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String MyKey=toPath.push().getKey();
+                final String MyKey=toPath.push().getKey();
+                if(flag==1){
+                    toPath.child(MyKey).child("Status").setValue("Success");
+                    toPath.child(MyKey).child("Meeting Over At").setValue(FinishTime);
+                }
+
+                else{
+                    toPath.child(MyKey).child("Status").setValue("Canceled");
+                }
                         toPath.child(MyKey).setValue(dataSnapshot.getValue(), new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
                         if (databaseError != null) {
-                            System.out.println("Copy failed");
+                            Log.d("1234567890","Copy failed");
                         } else {
-                            System.out.println("Success");
+                            Log.d("1234567890","Success");
                         }
                     }
                 });
-                if(flag==1){
-                toPath.child(MyKey).child("Status").setValue("Success");}
-                else{
-                    toPath.child(MyKey).child("Status").setValue("Canceled");
-                }
-                toPath.child(MyKey).child("Meeting Over At").setValue(FinishTime);
+
             }
 
             @Override

@@ -82,7 +82,7 @@ public class NavigationDemo extends AppCompatActivity
             slide_drag();
         FirebaseDatabase fbDb = FirebaseDatabase.getInstance();
         DatabaseReference RootRef = fbDb.getReference();
-        DatabaseReference PendRef = RootRef.child("ConfirmedAppointments");
+        DatabaseReference PendRef = RootRef.child("ConfirmAppointments");
 
         Query query = PendRef.orderByChild("ManagerName").equalTo(session.getUser());
 
@@ -161,10 +161,12 @@ public class NavigationDemo extends AppCompatActivity
             Intent in1=new Intent(NavigationDemo.this,Main2Activity.class);
             in1.putExtra("From","Call Log");
             startActivity(in1);
+            finish();
         } else if (id == R.id.Meetings) {
             Intent in1=new Intent(NavigationDemo.this,Main2Activity.class);
             in1.putExtra("From","Meetings");
             startActivity(in1);
+            finish();
         } else if (id == R.id.Settings) {
             Intent in2=new Intent(NavigationDemo.this,SettingsPrefScr.class);
             startActivity(in2);
