@@ -29,6 +29,15 @@ public class Session {
     public String getUser(){
         return prefs.getString("User",null);
     }
+
+    public void setRole(String Role){
+        editor.putString("Role",Role);
+        editor.commit();
+    }
+    public String getRole(){
+        return prefs.getString("Role",null);
+    }
+
     public void setTime(String Time){
         editor.putString("MyTime",Time);
         editor.commit();

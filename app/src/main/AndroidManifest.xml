@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -41,6 +42,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             >
         </activity>
+        <activity android:name=".QRScanner"></activity>
         <activity android:name=".SettingsPrefScr" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".HelpActivity" />

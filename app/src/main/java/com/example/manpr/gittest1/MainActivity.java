@@ -49,7 +49,16 @@ public class MainActivity extends AppCompatActivity {
         et2=(EditText)findViewById(R.id.Pass);
         session=new Session(this);
         if(session.loggedIn()){
+            String gR=session.getRole();
+            if(gR.equals("Manager"))
+            {
             startActivity(new Intent(MainActivity.this,NavigationDemo.class));
+            }
+            else if(gR.equals("Security"))
+            {
+                startActivity(new Intent(MainActivity.this,QRScanner.class));
+            }
+
             finish();
         }
 
@@ -87,8 +96,17 @@ ValueEventListener MyListener= new ValueEventListener() {
         if (Pass.equals(Password)&&Role.equals("Manager")){
             session.setLoggedIn(true);
             session.setUser(Use);
+            session.setRole(Role);
             Intent in=new Intent(MainActivity.this,NavigationDemo.class);
             startActivity(in);
+            finish();
+        }
+        else if (Pass.equals(Password)&&Role.equals("Security")){
+            session.setLoggedIn(true);
+            session.setUser(Use);
+            session.setRole(Role);
+            Intent in2=new Intent(MainActivity.this,QRScanner.class);
+            startActivity(in2);
             finish();
         }
         else {
